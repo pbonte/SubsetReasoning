@@ -47,8 +47,9 @@ public class OWLSubsetReasoner {
 		//2)convert to model
 		//3)add as new namedmoded to the dataset
 		//4)query that MF
-		Model model = OWLJenaTranslator.getOntologyModel(manager, axioms);
-		return addEvent(model, streamURI);
+		//Model model = OWLJenaTranslator.getOntologyModel(manager, axioms);
+		//return addEvent(model, streamURI);
+		return true;
 	}
 
 	public boolean addEvent(Model event, String streamURI) {
