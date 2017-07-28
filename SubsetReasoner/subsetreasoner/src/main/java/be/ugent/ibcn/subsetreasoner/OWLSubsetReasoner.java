@@ -18,6 +18,8 @@ import org.apache.jena.rdf.model.Model;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
 
+import be.ugent.ibcn.subsetreasoner.util.OWLJenaTranslator;
+
 /**
  * @author pbonte
  *
@@ -27,18 +29,25 @@ public class OWLSubsetReasoner {
 	private OWLOntology ontology;
 	private List<String> queries;
 	private Dataset ds;
+	private SubsetExtractor extractor;
 
 	public OWLSubsetReasoner(OWLOntology ontology, List<String> queries) {
-		this.ontology = ontology;
+		this.ontology = ontology;//static ontology
 		this.queries = queries;
 		this.ds = DatasetFactory.create();
-
+		this.extractor = new SubsetExtractor(ontology,3);
 	}
 
 	public boolean addEvent(Set<OWLAxiom> event, String streamURI) {
 		// convert axioms to model
 		// ds.addNamedModel(streamURI,model)
-		Model model = null;
+		Set<OWLAxiom> results = extractor.extract(event);
+		//TODO
+		//1)materialize new subset, however make sure only to materialize the subset
+		//2)convert to model
+		//3)add as new namedmoded to the dataset
+		//4)query that MF
+		Model model = OWLJenaTranslator.getOntologyModel(manager, axioms);
 		return addEvent(model, streamURI);
 	}
 
