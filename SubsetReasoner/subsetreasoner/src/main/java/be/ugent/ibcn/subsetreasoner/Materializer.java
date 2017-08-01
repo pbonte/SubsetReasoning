@@ -14,11 +14,12 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredClassAssertionAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredInverseObjectPropertiesAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredObjectPropertyAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
+import org.semanticweb.owlapi.util.InferredSubObjectPropertyAxiomGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import be.ugent.ibcn.subsetreasoner.util.OWLJenaTranslator;
 
 /**
  * @author pbonte
@@ -32,7 +33,9 @@ public class Materializer {
 		reasoner.flush();
 		List<InferredAxiomGenerator<? extends OWLAxiom>> generators = new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
 	    // generators.add(new InferredSubClassAxiomGenerator());
+		generators.add(new  InferredInverseObjectPropertiesAxiomGenerator());
 	    generators.add(new InferredClassAssertionAxiomGenerator());
+	    generators.add(new InferredSubObjectPropertyAxiomGenerator());
 		InferredOntologyGenerator infGen = new InferredOntologyGenerator(reasoner,generators);
 		infGen.fillOntology(ontology.getOWLOntologyManager().getOWLDataFactory(), ontology);
 		return ontology;		
@@ -41,7 +44,8 @@ public class Materializer {
 	public static OWLOntology materialize(Set<OWLAxiom> axioms, Reasoner reasoner ){
 		OWLOntology temp = null;
 		try{
-			temp =manager.createOntology();
+			temp = manager.createOntology();
+			manager.addAxioms(temp, axioms);
 			temp = materialize(temp, reasoner);
 		}catch(Exception e){
 			logger.error("Unable to create ontology",e);

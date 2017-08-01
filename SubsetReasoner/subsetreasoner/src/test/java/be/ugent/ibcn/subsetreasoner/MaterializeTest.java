@@ -38,13 +38,17 @@ public class MaterializeTest {
 		OWLOntologyManager manager = OWLManager.createConcurrentOWLOntologyManager();
 		OWLOntology ontology = manager.loadOntologyFromOntologyDocument(IRI.create(ontologyIri));
 		OWLOntology event = manager.loadOntologyFromOntologyDocument(IRI.create(eventIri));
+		Set<OWLAxiom> startAx = event.getAxioms();
 		Configuration c = new Configuration();
 		c.ignoreUnsupportedDatatypes=true;
 		Reasoner reasoner = new Reasoner(c, event);
 		System.out.println("Before: " +event.getAxiomCount());
+		System.out.println(startAx);
 		OWLOntology result = Materializer.materialize(event, reasoner);
+		Set<OWLAxiom> resultAx = result.getAxioms();
+		startAx.stream().forEach(System.out::println);
 		System.out.println("After: " +result.getAxiomCount());
-		System.out.println(result.getAxioms());
+		resultAx.stream().forEach(System.out::println);
 	}
 	
 }
