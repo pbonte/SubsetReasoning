@@ -26,6 +26,7 @@ import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
+import be.ugent.ibcn.subsetreasoner.UpdatePolicyExecutor.UpdatePolicy;
 import be.ugent.ibcn.subsetreasoner.util.OWLJenaTranslator;
 import be.ugent.ibcn.subsetreasoner.util.OWLUtils;
 
@@ -42,6 +43,8 @@ public class OWLSubsetReasoner {
 	private Reasoner reasoner;
 	private OWLOntologyManager manager;
 	private OWLOntology emptyAontology;
+	private Map<String, UpdatePolicy> updatePolicies;
+	private Map<String,Set<OWLAxiom>> currentView;
 
 	public OWLSubsetReasoner(OWLOntology ontology, OWLOntology materializedOntology, List<String> queries) {
 		this.ontology = ontology;// static ontology
@@ -54,28 +57,47 @@ public class OWLSubsetReasoner {
 		this.reasoner = new Reasoner(c, emptyAontology);
 		this.extractor = new SubsetExtractor(materializedOntology, 3);
 		this.manager = ontology.getOWLOntologyManager();
+		this.updatePolicies = new HashMap<String,UpdatePolicy>();
+		this.currentView = new HashMap<String,Set<OWLAxiom>>();
 	}
-
+	public void addUpdatePolicy(String stream, UpdatePolicy policy){
+		updatePolicies.put(stream, policy);
+	}
 	public boolean addEvent(Set<OWLAxiom> event, String streamURI) {
-		// convert axioms to model
-		// ds.addNamedModel(streamURI,model)
-		Set<OWLAxiom> results = extractor.extract(event);
-
+		//0)update event stream through update policy
+		Set<OWLAxiom> currentViewEvent = updateCurrentViewEvent(event,streamURI);		
+		//1)extract the subset from the materialized base
+		Set<OWLAxiom> results = extractor.extract(currentViewEvent);
+		//add axioms to the ontology used for reasoning
 		manager.addAxioms(emptyAontology, results);
-		OWLUtils.saveOntology(emptyAontology, "subset_premat.owl");
 
-		// 1)materialize new subset, however make sure only to materialize the
+		// 2)materialize new subset, however make sure only to materialize the
 		// subset
 		OWLOntology subsetOnt = Materializer.materialize(results, reasoner);
 		OWLUtils.saveOntology(subsetOnt, "subset.owl");
-		// 2)convert to model
+		// 3)convert to model
 		OntModel subsetModel = OWLJenaTranslator.getOntologyModel(subsetOnt.getOWLOntologyManager(), subsetOnt);
-		// 3) remove the axioms form the onotlogy
+		// 4) remove the axioms form the onotlogy
 		manager.removeAxioms(emptyAontology, results);
-		// 4)add as new namedmoded to the dataset
+		// 5)add as new namedmoded to the dataset
 		return addEvent(subsetModel, streamURI);
 	}
 
+	private Set<OWLAxiom> updateCurrentViewEvent(Set<OWLAxiom> event, String streamURI){
+		Set<OWLAxiom> currentViewEvent = null;
+		if(!updatePolicies.containsKey(streamURI)){
+			currentViewEvent=event;
+		}else{
+			if(!currentView.containsKey(streamURI)){
+				currentView.put(streamURI, event);
+				currentViewEvent = event;
+			}else{
+				Set<OWLAxiom> oldView = currentView.get(streamURI);
+				currentViewEvent = UpdatePolicyExecutor.update(oldView, event, updatePolicies.get(streamURI));
+			}
+		}
+		return currentViewEvent;
+	}
 	public boolean addEvent(Model event, String streamURI) {
 		ds.addNamedModel(streamURI, event);
 		return true;
