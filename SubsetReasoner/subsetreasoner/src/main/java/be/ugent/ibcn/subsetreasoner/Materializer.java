@@ -34,8 +34,8 @@ public class Materializer {
 		List<InferredAxiomGenerator<? extends OWLAxiom>> generators = new ArrayList<InferredAxiomGenerator<? extends OWLAxiom>>();
 	    // generators.add(new InferredSubClassAxiomGenerator());
 		generators.add(new  InferredInverseObjectPropertiesAxiomGenerator());
-	    generators.add(new InferredClassAssertionAxiomGenerator());
-	    generators.add(new InferredSubObjectPropertyAxiomGenerator());
+	    //generators.add(new InferredClassAssertionAxiomGenerator());
+	    //generators.add(new InferredSubObjectPropertyAxiomGenerator());
 		InferredOntologyGenerator infGen = new InferredOntologyGenerator(reasoner,generators);
 		infGen.fillOntology(ontology.getOWLOntologyManager().getOWLDataFactory(), ontology);
 		return ontology;		
