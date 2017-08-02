@@ -4,26 +4,8 @@
      xmlns:ProfileAccio="http://orca.test/ontology/ProfileAccio.owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:ContextAccio="http://orca.test/ontology/ContextAccio.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://orca.test/ontology/ContextAccio.owl#hasLocation -->
-
-    <ObjectProperty rdf:about="http://orca.test/ontology/ContextAccio.owl#hasLocation"/>
     
 
 
@@ -69,42 +51,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0000-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0000-000000000001"/>
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001">
-        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
-    </NamedIndividual>
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0002-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0002-000000000001">
-        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0000-000000000001"/>
-    </NamedIndividual>
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0003-0001-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0003-0001-000000000001">
-        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
-    </NamedIndividual>
     
 
 

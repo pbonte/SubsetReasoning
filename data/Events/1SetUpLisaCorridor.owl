@@ -43,20 +43,6 @@
     
 
 
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
-    
-
-
-    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001 -->
-
-    <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001">
-        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
-    </NamedIndividual>
-    
-
-
     <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0002-000000000001 -->
 
     <NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0002-000000000001">

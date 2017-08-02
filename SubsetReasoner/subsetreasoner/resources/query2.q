@@ -12,17 +12,21 @@ PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 
-SELECT ?p
+SELECT ?p 
 
 WHERE { 
 
-	?c rdf:type task:NormalCall .
+	?c rdf:type task:MedicalCall .
 	?c upper:hasStatus task:Active .
 	?p rdf:type profile:Person .
 	?p profile:hasCurrentRole ?crole .
 	?crole rolecomp:isWorking "true"^^xsd:boolean .
+	?p profile:hasRole ?role .
 	?p upper:hasStatus profile:Free . 
-	
-	
-		
-}LIMIT 1
+	?role rdf:type rolecomp:StaffMember .
+	?role rolecomp:hasCompetence ?comp .
+	?comp rdf:type rolecomp:AnswerMedicalCallCompetence .
+	?c task:redirectedBy ?redirect.
+	FILTER(?p!=?redirect)
+}
+LIMIT 1

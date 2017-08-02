@@ -9,20 +9,20 @@ PREFIX context: <http://orca.test/ontology/ContextAccio.owl#>
 PREFIX medical: <http://orca.test/ontology/MedicalAccio.owl#>
 PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
-PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
+PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 
-SELECT ?p
-
+SELECT ?p ?l
 WHERE { 
-
-	?c rdf:type task:NormalCall .
-	?c upper:hasStatus task:Active .
+	
 	?p rdf:type profile:Person .
-	?p profile:hasCurrentRole ?crole .
-	?crole rolecomp:isWorking "true"^^xsd:boolean .
-	?p upper:hasStatus profile:Free . 
-	
-	
-		
-}LIMIT 1
+	?p profile:hasRole ?role .
+	?role rdf:type rolecomp:StaffMember .
+	?p context:hasLocation ?l .
+	?l rdf:type task:RoomWithPatientorResident.
+	?l context:containsSystem ?s .
+	?s rdf:type wsnext:UnderBedLight .
+	?s wsnadj:hasValue '0.0'^^xsd:float
+	BIND('1'^^xsd:integer AS ?action) 
+
+}

@@ -50,7 +50,8 @@ public class OWLSubsetReasoner {
 		this.ontology = ontology;// static ontology
 		this.emptyAontology = OWLUtils.removeABox(OWLUtils.copyOntology(ontology));
 		this.queries = queries;
-		this.ds = DatasetFactory.create(
+		this.ds = DatasetFactory.create();
+		this.ds.addNamedModel("background", 
 				OWLJenaTranslator.getOntologyModel(materializedOntology.getOWLOntologyManager(), materializedOntology));
 		Configuration c = new Configuration();
 		c.ignoreUnsupportedDatatypes = true;
@@ -70,7 +71,6 @@ public class OWLSubsetReasoner {
 		Set<OWLAxiom> results = extractor.extract(currentViewEvent);
 		//add axioms to the ontology used for reasoning
 		manager.addAxioms(emptyAontology, results);
-
 		// 2)materialize new subset, however make sure only to materialize the
 		// subset
 		OWLOntology subsetOnt = Materializer.materialize(results, reasoner);
@@ -87,6 +87,7 @@ public class OWLSubsetReasoner {
 		Set<OWLAxiom> currentViewEvent = null;
 		if(!updatePolicies.containsKey(streamURI)){
 			currentViewEvent=event;
+			
 		}else{
 			if(!currentView.containsKey(streamURI)){
 				currentView.put(streamURI, event);
@@ -94,6 +95,7 @@ public class OWLSubsetReasoner {
 			}else{
 				Set<OWLAxiom> oldView = currentView.get(streamURI);
 				currentViewEvent = UpdatePolicyExecutor.update(oldView, event, updatePolicies.get(streamURI));
+				currentView.put(streamURI, currentViewEvent);
 			}
 		}
 		return currentViewEvent;
