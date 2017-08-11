@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.semanticweb.owlapi.formats.TurtleDocumentFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
@@ -100,7 +101,7 @@ public class OWLUtils {
 				mkdir.mkdirs();
 			}
 			file.createNewFile();
-			ontology.getOWLOntologyManager().saveOntology(ontology, new RDFXMLOntologyFormat(), new FileOutputStream(file));
+			ontology.getOWLOntologyManager().saveOntology(ontology, new TurtleDocumentFormat(), new FileOutputStream(file));
 		} catch (OWLOntologyStorageException | IOException e) {
 			e.printStackTrace();
 		}

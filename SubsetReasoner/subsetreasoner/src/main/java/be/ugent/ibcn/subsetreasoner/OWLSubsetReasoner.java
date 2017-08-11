@@ -49,6 +49,7 @@ public class OWLSubsetReasoner {
 	public OWLSubsetReasoner(OWLOntology ontology, OWLOntology materializedOntology, List<String> queries) {
 		this.ontology = ontology;// static ontology
 		this.emptyAontology = OWLUtils.removeABox(OWLUtils.copyOntology(ontology));
+		OWLUtils.saveOntology(emptyAontology, "empty.owl");
 		this.queries = queries;
 		this.ds = DatasetFactory.create();
 		this.ds.addNamedModel("background", 
