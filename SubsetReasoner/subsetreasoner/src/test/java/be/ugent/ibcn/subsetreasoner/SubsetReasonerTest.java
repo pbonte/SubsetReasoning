@@ -40,7 +40,7 @@ public class SubsetReasonerTest {
 		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(IRI.create(smallEventIRI));
 
 
-		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query));
+		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query),null);
 		reasoner.addEvent(smallEventOnt.getAxioms(), "call");
 		List<Map<String,String>> result = reasoner.query(query);
 		if(result.size()>0){
@@ -73,7 +73,7 @@ public class SubsetReasonerTest {
 		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(IRI.create(smallEventIRI));
 
 
-		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query));
+		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query),null);
 
 		for(int i = 0 ; i<10 ;i++){
 			long time1 = System.currentTimeMillis();

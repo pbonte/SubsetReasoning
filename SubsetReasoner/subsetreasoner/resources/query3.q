@@ -12,7 +12,9 @@ PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 
-SELECT ?p ?l
+CONSTRUCT{
+	?s wsnadj:hasValue '1.0'^^xsd:float
+}
 WHERE { 
 	
 	?p rdf:type profile:Person .
@@ -23,6 +25,4 @@ WHERE {
 	?l context:containsSystem ?s .
 	?s rdf:type wsnext:UnderBedLight .
 	?s wsnadj:hasValue '0.0'^^xsd:float
-	BIND('1'^^xsd:integer AS ?action) 
-
 }

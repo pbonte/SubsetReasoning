@@ -3,6 +3,7 @@
  */
 package be.ugent.ibcn.subsetreasoner;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -12,6 +13,9 @@ import java.util.stream.Stream;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLDataPropertyAxiom;
 import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLDeclarationAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
@@ -37,21 +41,42 @@ public class SubsetExtractor {
 
 	public Set<OWLAxiom> extract(Set<OWLAxiom> stream) {
 		Set<OWLAxiom> extracted = new HashSet<OWLAxiom>(stream);
+		Set<OWLNamedIndividual> investigatedInds = new HashSet<OWLNamedIndividual>();
 		for (OWLAxiom ax : stream) {
 			if (ax instanceof OWLDeclarationAxiom) {
 				OWLDeclarationAxiom declAx = (OWLDeclarationAxiom) ax;
 				if (declAx.getEntity() instanceof OWLNamedIndividual) {
 					OWLNamedIndividual ind = declAx.getEntity().asOWLNamedIndividual();
-					if (ontology.containsIndividualInSignature(ind.getIRI())) {
-						Set<OWLAxiom> retrievedAx = getReferencedAxioms(ind, ontology, depth);
-						extracted.addAll(retrievedAx);
-					}
+					Set<OWLAxiom> retrievedAx = extract_helper(investigatedInds,ind,ontology,depth);
+					extracted.addAll(retrievedAx);
 				}
 			}
+//			else if(ax instanceof OWLDataPropertyAssertionAxiom){
+//				OWLDataPropertyAssertionAxiom dataAx = (OWLDataPropertyAssertionAxiom)ax;
+//				OWLIndividual ind = dataAx.getSubject();
+//				Set<OWLAxiom> retrievedAx = extract_helper(investigatedInds,ind.asOWLNamedIndividual(),ontology,depth);
+//				extracted.addAll(retrievedAx);
+//				
+//			}
+//			else if(ax instanceof OWLObjectPropertyAssertionAxiom){
+//				OWLObjectPropertyAssertionAxiom objAx = (OWLObjectPropertyAssertionAxiom)ax;
+//				OWLIndividual ind = objAx.getSubject();
+//				Set<OWLAxiom> retrievedAx = extract_helper(investigatedInds,ind.asOWLNamedIndividual(),ontology,depth);
+//				extracted.addAll(retrievedAx);
+//			}
 		}
 		return extracted;
 	}
 
+	private Set<OWLAxiom> extract_helper(Set<OWLNamedIndividual> investigated,OWLNamedIndividual ind, OWLOntology ontology, int depth){
+		if (!investigated.contains(ind) && ontology.containsIndividualInSignature(ind.asOWLNamedIndividual().getIRI())) {
+			Set<OWLAxiom> retrievedAx = getReferencedAxioms(ind, ontology, depth);
+			investigated.add(ind);
+			return retrievedAx;
+		}else{
+			return Collections.emptySet();
+		}
+	}
 	/**
 	 * Retrieves the axioms of the linked individuals that have a connection the
 	 * the rootInd. The depth of the search for these individuals can be

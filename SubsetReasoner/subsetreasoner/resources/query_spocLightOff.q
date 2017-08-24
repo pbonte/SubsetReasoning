@@ -9,20 +9,23 @@ PREFIX context: <http://orca.test/ontology/ContextAccio.owl#>
 PREFIX medical: <http://orca.test/ontology/MedicalAccio.owl#>
 PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
-PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 
-CONSTRUCT{ 
-	?c upper:hasStatus task:Accepted.
-	?p upper:hasStatus profile:Busy .
+CONSTRUCT{
+ ?s wsnadj:hasValue '1.0'^^xsd:float .
 }
-WHERE { 
+WHERE {
 	
-	?p rdf:type profile:Person .
-	?p profile:loggedIntoDevice ?d .
-	?d context:hasLocation ?l .
-	?l context:containsSystem ?s .
 	?s rdf:type wsnext:Spock .
-	?s wsnadj:hasValue '0.0'^^xsd:float .
-	?c rdf:type task:MedicalCall .
-	?c task:madeAtLocation ?l .
+	?s wsnadj:hasValue '1.0'^^xsd:float .
+	?s context:hasLocation ?l .
+	BIND('0'^^xsd:integer AS ?action) 
+	
+	MINUS {
+		?p rdf:type profile:Person .
+		?p profile:loggedIntoDevice ?d .
+		?d context:hasLocation ?l .
+		?l context:containsSystem ?s .
+		?s rdf:type wsnext:Spock .
+	}
+
 }

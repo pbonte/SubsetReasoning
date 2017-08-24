@@ -3,12 +3,14 @@
  */
 package be.ugent.ibcn.subsetreasoner;
 
+import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.query.Dataset;
@@ -37,40 +39,54 @@ import be.ugent.ibcn.subsetreasoner.util.OWLUtils;
 public class OWLSubsetReasoner {
 
 	private OWLOntology ontology;
-	private List<String> queries;
+	private List<Query> queries;
+	private List<String> queryUpdateStreams;
 	private Dataset ds;
 	private SubsetExtractor extractor;
 	private Reasoner reasoner;
 	private OWLOntologyManager manager;
 	private OWLOntology emptyAontology;
 	private Map<String, UpdatePolicy> updatePolicies;
-	private Map<String,Set<OWLAxiom>> currentView;
+	private Map<String, Set<OWLAxiom>> currentView;
+	private OWLOntology materializedOntology;
 
-	public OWLSubsetReasoner(OWLOntology ontology, OWLOntology materializedOntology, List<String> queries) {
+	public OWLSubsetReasoner(OWLOntology ontology, OWLOntology materializedOntology, List<String> queries,
+			List<String> streams) {
 		this.ontology = ontology;// static ontology
 		this.emptyAontology = OWLUtils.removeABox(OWLUtils.copyOntology(ontology));
 		OWLUtils.saveOntology(emptyAontology, "empty.owl");
-		this.queries = queries;
+		this.queries = new ArrayList<Query>();
+		queries.stream().map(q -> this.queries.add(QueryFactory.create(q)));
+		this.queryUpdateStreams = streams;
 		this.ds = DatasetFactory.create();
-		this.ds.addNamedModel("background", 
+		this.ds.addNamedModel("background",
 				OWLJenaTranslator.getOntologyModel(materializedOntology.getOWLOntologyManager(), materializedOntology));
 		Configuration c = new Configuration();
 		c.ignoreUnsupportedDatatypes = true;
 		this.reasoner = new Reasoner(c, emptyAontology);
-		this.extractor = new SubsetExtractor(materializedOntology, 3);
 		this.manager = ontology.getOWLOntologyManager();
-		this.updatePolicies = new HashMap<String,UpdatePolicy>();
-		this.currentView = new HashMap<String,Set<OWLAxiom>>();
+		this.updatePolicies = new HashMap<String, UpdatePolicy>();
+		this.currentView = new HashMap<String, Set<OWLAxiom>>();
+		this.materializedOntology = materializedOntology;
+		this.extractor = new SubsetExtractor(this.materializedOntology, 3);
 	}
-	public void addUpdatePolicy(String stream, UpdatePolicy policy){
+
+	public void addUpdatePolicy(String stream, UpdatePolicy policy) {
 		updatePolicies.put(stream, policy);
 	}
+
+	public boolean addEvent(Model event, String streamURI) {
+		OWLOntology ont = OWLJenaTranslator.getOWLOntology(event);
+		Set<OWLAxiom> axes = OWLJenaTranslator.checkForIncorrectAnnotations(ont.getAxioms(), emptyAontology);
+		return addEvent(axes, streamURI);
+	}
+
 	public boolean addEvent(Set<OWLAxiom> event, String streamURI) {
-		//0)update event stream through update policy
-		Set<OWLAxiom> currentViewEvent = updateCurrentViewEvent(event,streamURI);		
-		//1)extract the subset from the materialized base
+		// 0)update event stream through update policy
+		Set<OWLAxiom> currentViewEvent = updateCurrentViewEvent(event, streamURI);
+		// 1)extract the subset from the materialized base
 		Set<OWLAxiom> results = extractor.extract(currentViewEvent);
-		//add axioms to the ontology used for reasoning
+		// add axioms to the ontology used for reasoning
 		manager.addAxioms(emptyAontology, results);
 		// 2)materialize new subset, however make sure only to materialize the
 		// subset
@@ -80,20 +96,32 @@ public class OWLSubsetReasoner {
 		OntModel subsetModel = OWLJenaTranslator.getOntologyModel(subsetOnt.getOWLOntologyManager(), subsetOnt);
 		// 4) remove the axioms form the onotlogy
 		manager.removeAxioms(emptyAontology, results);
-		// 5)add as new namedmoded to the dataset
-		return addEvent(subsetModel, streamURI);
+		// 5)remove current named model if exists
+		removeEvent(streamURI);
+		// 6)add as new namedmoded to the dataset
+		return addEventToGlobalModel(subsetModel, streamURI);
 	}
 
-	private Set<OWLAxiom> updateCurrentViewEvent(Set<OWLAxiom> event, String streamURI){
+	public void setupDelete(Model del) {
+		// delete from materialized ont used for subset calculation
+		OWLOntology ont = OWLJenaTranslator.getOWLOntology(del);
+		Set<OWLAxiom> axes = OWLJenaTranslator.checkForIncorrectAnnotations(ont.getAxioms(), emptyAontology);
+		materializedOntology.getOWLOntologyManager().removeAxioms(materializedOntology, axes);
+		// delete from materialized ont used for querying
+		ds.getNamedModel("background").remove(del);
+
+	}
+
+	private Set<OWLAxiom> updateCurrentViewEvent(Set<OWLAxiom> event, String streamURI) {
 		Set<OWLAxiom> currentViewEvent = null;
-		if(!updatePolicies.containsKey(streamURI)){
-			currentViewEvent=event;
-			
-		}else{
-			if(!currentView.containsKey(streamURI)){
+		if (!updatePolicies.containsKey(streamURI)) {
+			currentViewEvent = event;
+
+		} else {
+			if (!currentView.containsKey(streamURI)) {
 				currentView.put(streamURI, event);
 				currentViewEvent = event;
-			}else{
+			} else {
 				Set<OWLAxiom> oldView = currentView.get(streamURI);
 				currentViewEvent = UpdatePolicyExecutor.update(oldView, event, updatePolicies.get(streamURI));
 				currentView.put(streamURI, currentViewEvent);
@@ -101,36 +129,49 @@ public class OWLSubsetReasoner {
 		}
 		return currentViewEvent;
 	}
-	public boolean addEvent(Model event, String streamURI) {
+
+	private boolean addEventToGlobalModel(Model event, String streamURI) {
 		ds.addNamedModel(streamURI, event);
 		return true;
 	}
 
-	public List<Map<String,String>> query(String queryString) {
-		List<Map<String, String>> results = new ArrayList<Map<String, String>>();
+	public boolean removeEvent(String streamURI) {
+		if (ds.containsNamedModel(streamURI)) {
+			ds.removeNamedModel(streamURI);
+			return true;
+		}
+		return false;
+	}
 
+	public List<Map<String, String>> query(Query query) {
+		List<Map<String, String>> results = new ArrayList<Map<String, String>>();
 		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");
-		Query query = QueryFactory.create(queryString);
 		try (QueryExecution qexec = QueryExecutionFactory.create(query, merge)) {
-			ResultSet result = qexec.execSelect();
-			while (result != null && result.hasNext()) {			
-				Map<String, String> tempMap = new HashMap<String, String>();
-				
-				QuerySolution solution = result.next();
-				Iterator<String> it = solution.varNames();
-				
-				// Iterate over all results
-				while (it.hasNext()) {
-					String varName = it.next();
-					String varValue = solution.get(varName).toString();
-					tempMap.put(varName, varValue);
-					
+			if (query.isSelectType()) {
+				ResultSet result = qexec.execSelect();
+
+				while (result != null && result.hasNext()) {
+					Map<String, String> tempMap = new HashMap<String, String>();
+
+					QuerySolution solution = result.next();
+					Iterator<String> it = solution.varNames();
+
+					// Iterate over all results
+					while (it.hasNext()) {
+						String varName = it.next();
+						String varValue = solution.get(varName).toString();
+						tempMap.put(varName, varValue);
+
+					}
+
+					// Only add if we have some objects in temp map
+					if (tempMap.size() > 0) {
+						results.add(tempMap);
+					}
 				}
-				
-				// Only add if we have some objects in temp map
-				if (tempMap.size() > 0) {
-					results.add(tempMap);
-				}
+			} else {
+				Model result = qexec.execConstruct();
+				System.out.println(result);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,11 +179,31 @@ public class OWLSubsetReasoner {
 		return results;
 	}
 
+	public Model queryConstruct(Query query) {
+		Model result = null;
+		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");
+		try (QueryExecution qexec = QueryExecutionFactory.create(query, merge)) {
+			result = qexec.execConstruct();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<Map<String, String>> query(String queryString) {
+		Query query = QueryFactory.create(queryString);
+		return query(query);
+	}
+
+	public Model queryConstruct(String queryString) {
+		Query query = QueryFactory.create(queryString);
+		return queryConstruct(query);
+	}
+
 	public List<ResultSet> query() {
 		List<ResultSet> results = new ArrayList<ResultSet>();
 		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");
-		for (String queryString : queries) {
-			Query query = QueryFactory.create(queryString);
+		for (Query query : queries) {
 			try (QueryExecution qexec = QueryExecutionFactory.create(query, merge)) {
 				ResultSet result = qexec.execSelect();
 				results.add(result);

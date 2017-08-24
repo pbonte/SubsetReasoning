@@ -9,24 +9,13 @@ PREFIX context: <http://orca.test/ontology/ContextAccio.owl#>
 PREFIX medical: <http://orca.test/ontology/MedicalAccio.owl#>
 PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
-PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 
-SELECT ?p 
-
+SELECT ?c ?status
 WHERE { 
+	
+	?c rdf:type task:Call .
+	?c upper:hasStatus ?status .
 
-	?c rdf:type task:MedicalCall .
-	?c upper:hasStatus task:Redirected .
-	?p rdf:type profile:Person .
-	?p profile:hasCurrentRole ?crole .
-	?crole rolecomp:isWorking "true"^^xsd:boolean .
-	?p profile:hasRole ?role .
-	?p upper:hasStatus profile:Free . 
-	?role rdf:type rolecomp:StaffMember .
-	?role rolecomp:hasCompetence ?comp .
-	?comp rdf:type rolecomp:AnswerMedicalCallCompetence .
-	?c task:redirectedBy ?redirect.
-	FILTER(?p!=?redirect)
+
 }
-LIMIT 1
