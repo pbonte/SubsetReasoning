@@ -1,0 +1,616 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://orca.test/ontology/TaskAccio_fromCache_5.owl#"
+     xml:base="http://orca.test/ontology/TaskAccio_fromCache_5.owl"
+     xmlns:ProfileAccio="http://orca.test/ontology/ProfileAccio.owl#"
+     xmlns:UpperAccio="http://orca.test/ontology/UpperAccio.owl#"
+     xmlns:RoleCompetenceAccio="http://orca.test/ontology/RoleCompetenceAccio.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:ContextAccio="http://orca.test/ontology/ContextAccio.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:WSNadjustedAccio="http://orca.test/ontology/WSNadjustedAccio.owl#">
+    <owl:Ontology rdf:about="http://orca.test/ontology/TaskAccio_fromCache_5_mat0.owl">
+        <owl:imports rdf:resource="http://orca.test/ontology/TaskAccio.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#AnswerCareCallCompetence_object -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#AnswerCareCallCompetence_object">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#AnswerCareCallCompetence"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#AnswerHotelFunctionCallCompetence_object -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#AnswerHotelFunctionCallCompetence_object">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#AnswerHotelFunctionCallCompetence"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#AnswerMedicalCallCompetence_object -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#AnswerMedicalCallCompetence_object">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#AnswerMedicalCallCompetence"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#CallButton_1.0.0.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#CallButton_1.0.0.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#CallButton"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.0.0.1.1"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.101.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.101.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#CallButton"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.1.1"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.102.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.102.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#CallButton"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.1.1"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#CareRole"/>
+        <RoleCompetenceAccio:hasCompetence rdf:resource="http://orca.test/ontology/MedicalAccio.owl#AnswerCareCallCompetence_object"/>
+        <RoleCompetenceAccio:hasCompetence rdf:resource="http://orca.test/ontology/MedicalAccio.owl#AnswerHotelFunctionCallCompetence_object"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0002-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0002-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#CareRole"/>
+        <RoleCompetenceAccio:hasCompetence rdf:resource="http://orca.test/ontology/MedicalAccio.owl#AnswerCareCallCompetence_object"/>
+        <RoleCompetenceAccio:hasCompetence rdf:resource="http://orca.test/ontology/MedicalAccio.owl#AnswerHotelFunctionCallCompetence_object"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0000-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0000-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Coordinate"/>
+        <ContextAccio:hasXCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ContextAccio:hasXCoordinate>
+        <ContextAccio:hasYCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ContextAccio:hasYCoordinate>
+        <ContextAccio:hasZCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ContextAccio:hasZCoordinate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0001-000000000002 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0001-000000000002">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Coordinate"/>
+        <ContextAccio:hasXCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ContextAccio:hasXCoordinate>
+        <ContextAccio:hasYCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ContextAccio:hasYCoordinate>
+        <ContextAccio:hasZCoordinate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ContextAccio:hasZCoordinate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0000-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0000-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0000-0000-000000000001</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0000-0001-000000000001</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000002 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000002">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0000-0001-000000000002</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0001-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0001-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0001-0001-000000000001</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0002-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0002-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0002-0001-000000000001</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0003-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0003-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00000000-0000-0003-0001-000000000001</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.0.0.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.0.0.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0.0.1.1</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.1.1</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.101.101 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.101.101">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.101.101</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.102.102 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.102.102">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.102.102</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.104.104 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.104.104">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.104.104</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.105.105 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.105.105">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.105.105</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.5.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.5.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.101.5.1</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.1.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.1.1</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.101.101 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.101.101">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.101.101</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.102.102 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.102.102">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.102.102</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.104.104 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.104.104">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.104.104</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.105.105 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.105.105">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.105.105</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.5.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.5.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.1.102.5.1</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_363D291E-372D-4D6C-A327-8EE34367BAB8 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_363D291E-372D-4D6C-A327-8EE34367BAB8">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">363D291E-372D-4D6C-A327-8EE34367BAB8</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#ID_EA5C02B3-43A0-41CB-AD87-041852A5FB1C -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#ID_EA5C02B3-43A0-41CB-AD87-041852A5FB1C">
+        <rdf:type rdf:resource="http://orca.test/ontology/UpperAccio.owl#ID"/>
+        <UpperAccio:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EA5C02B3-43A0-41CB-AD87-041852A5FB1C</UpperAccio:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0000-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0000-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Room"/>
+        <ContextAccio:hasCentreCoordinate rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0000-000000000001"/>
+        <ContextAccio:hasFunction rdf:resource="http://orca.test/ontology/MedicalAccio.owl#PatientCareRoomFunction"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0000-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Room"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.101.1.1"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.101.105.105"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.101.101.101"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.101.5.1"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.101.104.104"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.101.102.102"/>
+        <ContextAccio:hasFunction rdf:resource="http://orca.test/ontology/MedicalAccio.owl#PatientCareRoomFunction"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Room"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#CallButton_1.1.102.1.1"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.102.105.105"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.102.101.101"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.102.5.1"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.102.104.104"/>
+        <ContextAccio:containsSystem rdf:resource="http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.102.102.102"/>
+        <ContextAccio:hasCentreCoordinate rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Coordinate_00000000-0000-0000-0001-000000000002"/>
+        <ContextAccio:hasFunction rdf:resource="http://orca.test/ontology/MedicalAccio.owl#PatientCareRoomFunction"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0000-0001-000000000002"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.101.105.105 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.101.105.105">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#MagneticLock"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.105.105"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.102.105.105 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#MagneticLock_1.1.102.105.105">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#MagneticLock"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.105.105"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#MedicalRole_00000000-0000-0003-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#MedicalRole_00000000-0000-0003-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#MedicalRole"/>
+        <RoleCompetenceAccio:hasCompetence rdf:resource="http://orca.test/ontology/MedicalAccio.owl#AnswerMedicalCallCompetence_object"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.101.101.101 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.101.101.101">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#MoodLighting"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.101.101"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.102.101.101 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#MoodLighting_1.1.102.101.101">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#MoodLighting"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.101.101"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#PatientCareRoomFunction -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#PatientCareRoomFunction">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#PatientCare"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Patient_00000000-0000-0001-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Patient_00000000-0000-0001-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0001-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0001-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#Person"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <ProfileAccio:hasCurrentRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Patient_00000000-0000-0001-0001-000000000001"/>
+        <ProfileAccio:hasRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Patient_00000000-0000-0001-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0001-0001-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0002-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#Person"/>
+        <ProfileAccio:hasCurrentRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0001-000000000001"/>
+        <ProfileAccio:hasRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#CareRole_00000000-0000-0002-0001-000000000001"/>
+        <ProfileAccio:hasTrustRelationship rdf:resource="http://orca.test/ontology/MedicalAccio.owl#PersonalRelationship_00000000-0000-0001-0001-000000000001"/>
+        <ProfileAccio:hasTrustRelationship rdf:resource="http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0001-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0002-0001-000000000001"/>
+        <UpperAccio:hasStatus rdf:resource="http://orca.test/ontology/ProfileAccio.owl#Free"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0003-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0003-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#Person"/>
+        <ProfileAccio:hasCurrentRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MedicalRole_00000000-0000-0003-0001-000000000001"/>
+        <ProfileAccio:hasRole rdf:resource="http://orca.test/ontology/MedicalAccio.owl#MedicalRole_00000000-0000-0003-0001-000000000001"/>
+        <ProfileAccio:hasTrustRelationship rdf:resource="http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0001-0001-000000000001"/>
+        <ProfileAccio:hasTrustRelationship rdf:resource="http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0003-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_00000000-0000-0003-0001-000000000001"/>
+        <UpperAccio:hasStatus rdf:resource="http://orca.test/ontology/ProfileAccio.owl#Free"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#PersonalRelationship_00000000-0000-0001-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#PersonalRelationship_00000000-0000-0001-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#PersonalRelationship"/>
+        <ProfileAccio:hasTrustRelationshipWith rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0001-0001-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.101.5.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.101.5.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#RegistrationButton"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.5.1"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.102.5.1 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#RegistrationButton_1.1.102.5.1">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#RegistrationButton"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.5.1"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#SimulationTerminal -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#SimulationTerminal">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Terminal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.101.104.104 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.101.104.104">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#Spock"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.104.104"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.102.104.104 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Spock_1.1.102.104.104">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#Spock"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.104.104"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#StaffMember_00000000-0000-0000-0000-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#StaffMember_00000000-0000-0000-0000-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/RoleCompetenceAccio.owl#StaffMember"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Terminal"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C">
+        <rdf:type rdf:resource="http://orca.test/ontology/ContextAccio.owl#Terminal"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <ProfileAccio:associatedWith rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0001-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0001-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0001-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#TherapeuticRelationship"/>
+        <ProfileAccio:hasTrustRelationshipWith rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0001-0001-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0003-0001-000000000001 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#TherapeuticRelationship_00000000-0000-0003-0001-000000000001">
+        <rdf:type rdf:resource="http://orca.test/ontology/ProfileAccio.owl#TherapeuticRelationship"/>
+        <ProfileAccio:hasTrustRelationshipWith rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Person_00000000-0000-0003-0001-000000000001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.101.102.102 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.101.102.102">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#UnderBedLight"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000001"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.101.102.102"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_EA5C02B3-43A0-41CB-AD87-041852A5FB1C"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.102.102.102 -->
+
+    <owl:NamedIndividual rdf:about="http://orca.test/ontology/MedicalAccio.owl#UnderBedLight_1.1.102.102.102">
+        <rdf:type rdf:resource="http://orca.test/ontology/WSNextensionAccio.owl#UnderBedLight"/>
+        <ContextAccio:hasLocation rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Location_00000000-0000-0000-0001-000000000002"/>
+        <UpperAccio:hasId rdf:resource="http://orca.test/ontology/MedicalAccio.owl#ID_1.1.102.102.102"/>
+        <WSNadjustedAccio:isSensorPartOf rdf:resource="http://orca.test/ontology/MedicalAccio.owl#Terminal_363D291E-372D-4D6C-A327-8EE34367BAB8"/>
+        <WSNadjustedAccio:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</WSNadjustedAccio:hasValue>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

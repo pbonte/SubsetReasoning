@@ -10,7 +10,7 @@
      xmlns:ProfileAccio="http://orca.test/ontology/ProfileAccio.owl#"
      xmlns:ContextAccio="http://orca.test/ontology/ContextAccio.owl#"
      xmlns:RoleCompetenceAccio="http://orca.test/ontology/RoleCompetenceAccio.owl#">
-    <owl:Ontology rdf:about="http://orca.test/ontology/TaskAccio_fromCache_5.owl">
+    <owl:Ontology rdf:about="http://orca.test/ontology/TaskAccio_fromCache_5_pre1ward.owl">
         <owl:imports rdf:resource="http://orca.test/ontology/TaskAccio.owl"/>
     </owl:Ontology>
     

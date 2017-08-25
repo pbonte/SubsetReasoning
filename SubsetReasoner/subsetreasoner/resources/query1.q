@@ -12,7 +12,7 @@ PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 
-SELECT ?p
+SELECT ?p 
 
 WHERE { 
 

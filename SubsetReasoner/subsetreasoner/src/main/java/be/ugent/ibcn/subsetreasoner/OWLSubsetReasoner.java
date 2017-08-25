@@ -5,6 +5,7 @@ package be.ugent.ibcn.subsetreasoner;
 
 import java.sql.Savepoint;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.Syntax;
 import org.apache.jena.rdf.model.Model;
 import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.HermiT.Reasoner;
@@ -74,14 +76,57 @@ public class OWLSubsetReasoner {
 	public void addUpdatePolicy(String stream, UpdatePolicy policy) {
 		updatePolicies.put(stream, policy);
 	}
-
-	public boolean addEvent(Model event, String streamURI) {
+	public int addEvent(Model event,String streamURI,String query){
+		List<Map<String, String>> results = test(event,query);
+		Map<String,String> temp = results.stream().findAny().orElse(Collections.emptyMap());
+		String result=temp.get(temp.keySet().stream().findAny().orElse("none"));
+		if(result != null && !result.equals("none")){
+			return addEvent(event,streamURI+result);
+		}else{
+			return 0;
+		}
+	}
+	public int addEvent(Model event, String streamURI) {
 		OWLOntology ont = OWLJenaTranslator.getOWLOntology(event);
 		Set<OWLAxiom> axes = OWLJenaTranslator.checkForIncorrectAnnotations(ont.getAxioms(), emptyAontology);
 		return addEvent(axes, streamURI);
 	}
+	public List<Map<String, String>> test(Model event,String query){
+		List<Map<String, String>> results = new ArrayList<Map<String, String>>();
+		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");
+		
+		Dataset test = DatasetFactory.create(merge);
+		test.addNamedModel("http://stream", event);
+		try (QueryExecution qexec = QueryExecutionFactory.create(query, test)) {		
+				ResultSet result = qexec.execSelect();
 
-	public boolean addEvent(Set<OWLAxiom> event, String streamURI) {
+				while (result != null && result.hasNext()) {
+					Map<String, String> tempMap = new HashMap<String, String>();
+
+					QuerySolution solution = result.next();
+					Iterator<String> it = solution.varNames();
+
+					// Iterate over all results
+					while (it.hasNext()) {
+						String varName = it.next();
+						String varValue = solution.get(varName).toString();
+						tempMap.put(varName, varValue);
+
+					}
+
+					// Only add if we have some objects in temp map
+					if (tempMap.size() > 0) {
+						results.add(tempMap);
+					}
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	public int addEvent(Set<OWLAxiom> event, String streamURI) {
 		// 0)update event stream through update policy
 		Set<OWLAxiom> currentViewEvent = updateCurrentViewEvent(event, streamURI);
 		// 1)extract the subset from the materialized base
@@ -90,8 +135,9 @@ public class OWLSubsetReasoner {
 		manager.addAxioms(emptyAontology, results);
 		// 2)materialize new subset, however make sure only to materialize the
 		// subset
+		int subsetSize = results.size();
 		OWLOntology subsetOnt = Materializer.materialize(results, reasoner);
-		OWLUtils.saveOntology(subsetOnt, "subset.owl");
+		//OWLUtils.saveOntology(subsetOnt, "subset.owl");
 		// 3)convert to model
 		OntModel subsetModel = OWLJenaTranslator.getOntologyModel(subsetOnt.getOWLOntologyManager(), subsetOnt);
 		// 4) remove the axioms form the onotlogy
@@ -99,7 +145,8 @@ public class OWLSubsetReasoner {
 		// 5)remove current named model if exists
 		removeEvent(streamURI);
 		// 6)add as new namedmoded to the dataset
-		return addEventToGlobalModel(subsetModel, streamURI);
+		addEventToGlobalModel(subsetModel, streamURI);
+		return subsetSize;
 	}
 
 	public void setupDelete(Model del) {
@@ -116,6 +163,8 @@ public class OWLSubsetReasoner {
 		Set<OWLAxiom> currentViewEvent = null;
 		if (!updatePolicies.containsKey(streamURI)) {
 			currentViewEvent = event;
+			updatePolicies.put(streamURI, UpdatePolicy.UPDATE);
+			currentView.put(streamURI, currentViewEvent);
 
 		} else {
 			if (!currentView.containsKey(streamURI)) {
@@ -199,7 +248,20 @@ public class OWLSubsetReasoner {
 		Query query = QueryFactory.create(queryString);
 		return queryConstruct(query);
 	}
-
+	public Dataset queryConstructQuad(String queryString) {
+		Query query = QueryFactory.create(queryString, Syntax.syntaxARQ);
+		return queryConstructQuad(query);
+	}
+	public Dataset queryConstructQuad(Query query) {
+		Dataset result = null;
+		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");
+		try (QueryExecution qexec = QueryExecutionFactory.create(query, merge)) {
+			result = qexec.execConstructDataset();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public List<ResultSet> query() {
 		List<ResultSet> results = new ArrayList<ResultSet>();
 		Model merge = ds.getNamedModel("urn:x-arq:UnionGraph");

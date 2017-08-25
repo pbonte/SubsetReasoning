@@ -15,4 +15,5 @@ Select *
 WHERE { 
 	?l rdf:type wsnext:Light .
 	?l wsnadj:hasValue ?val.
+	
 }

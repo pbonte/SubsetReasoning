@@ -11,11 +11,8 @@ PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 
-SELECT ?c ?status
+SELECT ?c ?status 
 WHERE { 
-	
 	?c rdf:type task:Call .
 	?c upper:hasStatus ?status .
-
-
 }

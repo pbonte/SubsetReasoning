@@ -11,10 +11,16 @@ PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 PREFIX task: <http://orca.test/ontology/TaskAccio.owl#>
 PREFIX rolecomp: <http://orca.test/ontology/RoleCompetenceAccio.owl#>
+PREFIX apf: <http://jena.hpl.hp.com/ARQ/property#>
+
 
 CONSTRUCT{
 	?l wsnadj:hasValue '0.0'^^xsd:float
 }
 WHERE { 
 	?l rdf:type wsnext:Light .
+	?l context:hasLocation ?loc.
+	?loc context:hasCentreCoordinate ?coord.
+	?coord context:hasZCoordinate ?ward.
+	FILTER(?ward = %d)
 }

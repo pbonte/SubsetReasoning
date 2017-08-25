@@ -11,7 +11,7 @@ PREFIX wsnadj: <http://orca.test/ontology/WSNadjustedAccio.owl#>
 PREFIX wsnext: <http://orca.test/ontology/WSNextensionAccio.owl#>
 
 CONSTRUCT{
- ?s wsnadj:hasValue '1.0'^^xsd:float .
+ ?s wsnadj:hasValue '0.0'^^xsd:float .
 }
 WHERE {
 	
