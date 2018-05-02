@@ -29,15 +29,16 @@ public class SubsetReasonerTest {
 	
 	@Test
 	public void testSubSetReasoning() throws Exception{
-		String matIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/precomputed_1ward.owl";
-		String normalIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/1ward.owl";
-		String smallEventIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/event.owl";
+		String matIRI = "precomputed_1ward.owl";
+		String normalIRI = "1ward.owl";
+		String smallEventIRI = "event.owl";
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
 		String query = new String(Files.readAllBytes(Paths.get("resources/query_smallEvent.q")));
 		OWLOntologyManager manager = OWLManager.createConcurrentOWLOntologyManager();
-		OWLOntology matOnt = manager.loadOntologyFromOntologyDocument(IRI.create(matIRI));
-		OWLOntology normalOnt = manager.loadOntologyFromOntologyDocument(IRI.create(normalIRI));
-		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(IRI.create(smallEventIRI));
+		OWLOntology matOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(matIRI));
+		OWLOntology normalOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(normalIRI));
+		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(smallEventIRI));
 
 
 		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query),null);
@@ -57,20 +58,21 @@ public class SubsetReasonerTest {
 	}
 	@Test
 	public void testSubSetReasoning2() throws Exception{
-		String matIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/precomputed_1ward.owl";
-		String normalIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/1ward.owl";
-		String eventIRI = "file:///tmp/massif/savedontologyLocation.owl";
-		String event2IRI = "file:///tmp/massif/savedontologyLocation.owl";
-		String smallEventIRI = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/event.owl";
+		String matIRI = "precomputed_1ward.owl";
+		String normalIRI = "1ward.owl";
+		String eventIRI = "8SceneMarieCorridor.owl";
+		String event2IRI = "8SceneMarieCorridor.owl";
+		String smallEventIRI = "event.owl";
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
-		String queryLoc = "file:///home/pbonte/Github/SubsetReasoning/SubsetReasoner/subsetreasoner/resources/query.q";
+		String queryLoc = "query.q";
 		String query = new String(Files.readAllBytes(Paths.get("resources/query_smallEvent.q")));
 		OWLOntologyManager manager = OWLManager.createConcurrentOWLOntologyManager();
-		OWLOntology matOnt = manager.loadOntologyFromOntologyDocument(IRI.create(matIRI));
-		OWLOntology normalOnt = manager.loadOntologyFromOntologyDocument(IRI.create(normalIRI));
-		OWLOntology eventOnt = manager.loadOntologyFromOntologyDocument(IRI.create(eventIRI));
-		OWLOntology event2Ont = manager.loadOntologyFromOntologyDocument(IRI.create(event2IRI));
-		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(IRI.create(smallEventIRI));
+		OWLOntology matOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(matIRI));
+		OWLOntology normalOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(normalIRI));
+		OWLOntology eventOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(eventIRI));
+		OWLOntology event2Ont = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(event2IRI));
+		OWLOntology smallEventOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(smallEventIRI));
 
 
 		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Collections.singletonList(query),null);
