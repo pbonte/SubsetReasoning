@@ -53,7 +53,7 @@ public class OWLSubsetReasoner {
 	private OWLOntology materializedOntology;
 
 	public OWLSubsetReasoner(OWLOntology ontology, OWLOntology materializedOntology, List<String> queries,
-			List<String> streams) {
+			List<String> streams,int subsetsize) {
 		this.ontology = ontology;// static ontology
 		this.emptyAontology = OWLUtils.removeABox(OWLUtils.copyOntology(ontology));
 		OWLUtils.saveOntology(emptyAontology, "empty.owl");
@@ -70,7 +70,7 @@ public class OWLSubsetReasoner {
 		this.updatePolicies = new HashMap<String, UpdatePolicy>();
 		this.currentView = new HashMap<String, Set<OWLAxiom>>();
 		this.materializedOntology = materializedOntology;
-		this.extractor = new SubsetExtractor(this.materializedOntology, 3);
+		this.extractor = new SubsetExtractor(this.materializedOntology, subsetsize);
 	}
 
 	public void addUpdatePolicy(String stream, UpdatePolicy policy) {

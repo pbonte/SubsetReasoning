@@ -98,7 +98,7 @@ public class Main {
 		OWLOntology normalOnt = manager.loadOntologyFromOntologyDocument(classloader.getResourceAsStream(normalIRI));
 
 		OWLSubsetReasoner reasoner = new OWLSubsetReasoner(normalOnt, matOnt, Arrays.asList(queries),
-				Arrays.asList(updates));
+				Arrays.asList(updates),3);
 		reasoner.addUpdatePolicy("call", UpdatePolicy.UPDATE);
 		reasoner.addUpdatePolicy("location", UpdatePolicy.UPDATE);
 		reasoner.addUpdatePolicy("presence", UpdatePolicy.UPDATE);
