@@ -1,6 +1,7 @@
 # Stream UOBM
 
 This is an extension of the UOBM benchmark that generates sequences of students that join the university over the year.
+
 USAGE: java -jar streamuobm.jar [num of departments] [output]
   
 EXAMPLE: java -jar streamuobm.jar 1 /tmp/out
